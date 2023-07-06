@@ -1,0 +1,70 @@
+CREATE TABLE usuarios(
+	id int,
+	usuario varchar(45),
+	nome varchar(45),
+	senha varchar(45),
+	idade int, 
+	email varchar(100),
+	
+	primary key(id)
+); 
+CREATE SEQUENCE id_usuarios;
+
+CREATE TABLE playlists(
+	id int,
+	nome varchar(45),
+	id_usuario int, 
+	
+	primary key(id),
+	foreign key(id_usuario) references usuarios(id)
+); 
+CREATE SEQUENCE id_playlists;
+
+CREATE TABLE musicas(
+	id int, 
+	nome varchar(45),
+	genero varchar(45),
+	path varchar(60),
+	
+	primary key(id)
+);
+CREATE SEQUENCE id_musicas; 
+
+CREATE TABLE artistas(
+	id int, 
+	nome varchar(45),
+	idade int, 
+	
+	primary key(id)
+);
+CREATE SEQUENCE id_artistas; 
+
+CREATE TABLE playlists_tem_musicas(
+	id int, 
+	id_playlist int,
+	id_musica int,
+	primary key(id), 
+	foreign key(id_musica) references musicas(id),
+	foreign key(id_playlist) references playlists(id)
+);
+CREATE SEQUENCE id_playlists_tem_musicas;
+
+CREATE TABLE artistas_tem_musicas(
+	id int,
+	id_artista int,
+	id_musica int, 
+	primary key(id),
+	foreign key(id_artista) references artistas(id),
+	foreign key(id_musica) references musicas(id)
+);
+CREATE SEQUENCE id_artistas_tem_musicas;
+
+ALTER TABLE musicas
+ADD COLUMN arquivo BYTEA;
+
+ALTER TABLE musicas
+DROP COLUMN path;
+
+
+ALTER TABLE usuarios
+DROP COLUMN idade;

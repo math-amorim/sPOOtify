@@ -1,0 +1,13 @@
+{
+    "java.configuration.runtimes": [
+      {
+        "name": "JavaSE-11",
+        "path": "usr/bin/java"
+      }
+    ]
+  }
+  
+  
+  
+  
+  
